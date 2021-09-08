@@ -1,0 +1,13 @@
+<Simulacion>
+    <Nombre>
+        Simulacion_1
+    </Nombre>
+    <ListadoProductos>
+        <Producto>
+            SuperComputadora
+        </Producto>
+        <Producto>
+            SmartWatch
+        </Producto>
+    </ListadoProductos>
+</Simulacion>
