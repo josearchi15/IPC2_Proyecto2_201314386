@@ -7,10 +7,7 @@ class LineaProduccion:
         self.tiempo = 0
         self.posicion = 0
 
-    def mover(self, componente):
-        if self.posicion > componente:
-            dif = self.posicion-componente
-        elif componente > self.posicion:
-            dif = componente-self.posicion
-        
-        self.tiempo += dif
+    def getInfo(self):
+        print("ID: ",self.id)
+        print("No. componentes: ", self.componentes)
+        print("Tiempo de Ensamblaje: ",self.tEnesamble)
