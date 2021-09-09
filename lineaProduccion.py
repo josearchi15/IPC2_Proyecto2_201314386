@@ -1,5 +1,4 @@
 
-
 class LineaProduccion:
     def __init__(self, id, componentes, ensamblaje):
         self.id = id
