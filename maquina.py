@@ -29,3 +29,28 @@ class Maquina():
             print("Nombre: ",prod.nombre)
             prod.getPasos()
         
+    def getLinea(self, lineaId):
+        actual = self.lineasProduccion.cabeza    
+        encontrado = False      
+        while actual != None and not encontrado:  
+            if actual.obtenerDato().id == lineaId:      
+                encontrado = True                 
+            else:
+                actual = actual.obtenerSiguiente() 
+
+        return encontrado 
+
+    def getProducto(self, nombreProducto):
+        actual = self.productos.cabeza    
+        encontrado = False      
+        while actual != None and not encontrado:  
+            if actual.obtenerDato().nombre == nombreProducto:      
+                encontrado = True                 
+            else:
+                actual = actual.obtenerSiguiente() 
+
+        return actual.obtenerDato()
+    
+    
+    def construirProducto(self, producto):
+        pass

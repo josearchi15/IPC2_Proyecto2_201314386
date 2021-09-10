@@ -5,6 +5,7 @@ class Producto:
         self.nombre = nombre
         self.instrucciones = instrucciones
         self.pasos = Cola()
+        self.tiempo = 0
 
     def getPasos(self):
         arr = self.instrucciones.split('p')
