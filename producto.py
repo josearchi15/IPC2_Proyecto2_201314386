@@ -22,8 +22,8 @@ class Producto:
 
         while not puntoLinea.estaVacia() and not puntoComponente.estaVacia():
             punto = {
-                "linea": puntoLinea.pop(),
-                "componente": puntoComponente.pop()
+                "linea": puntoLinea.pop().split("L")[1],
+                "componente": puntoComponente.pop().split("C")[1]
             }
             self.pasos.agregar(punto)
 
