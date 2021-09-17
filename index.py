@@ -1,6 +1,6 @@
 from tkinter import *
 from tkinter import filedialog
-from main import constuirMaquina, construirSimulacion, listadoSimulacion
+from main import constuirMaquina, construirSimulacion, listadoSimulacion, printPasos
 
 root = Tk()
 root.title("Proyecto 2: Brazos de ensamblaje")
@@ -36,6 +36,9 @@ ruta = Entry(root, textvariable=maquina).pack()
 simulacion = Button(root, text='Seleccionar simulacion', command=openFile2)
 simulacion.pack()
 ruta2 = Entry(root, textvariable=simulacionRuta).pack()
+
+printt = Button(root, text='Imprimir pasos', command=printPasos)
+printt.pack()
 
 lista = Button(root, text='Imprimir listado', command=listado)
 lista.pack()

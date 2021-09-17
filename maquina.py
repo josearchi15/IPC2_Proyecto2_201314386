@@ -38,7 +38,7 @@ class Maquina():
             else:
                 actual = actual.obtenerSiguiente() 
 
-        return encontrado 
+        return actual.obtenerDato()
 
     def getProducto(self, nombreProducto):
         actual = self.productos.cabeza    

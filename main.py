@@ -9,6 +9,16 @@ def cleanText(text):
     cleanTxt = text.replace(" ", "").replace("\n","")
     return cleanTxt
 
+def tiempoMovimiento(pi, pf):
+	p1 = int(pi)
+	p2 = int(pf)
+	if p1 == p2:
+		return 0
+	elif p1 > p2:
+		return p1 - p2
+	elif p2 > p1:
+		return p2 - p1
+
 maquina = Maquina("Maquina") 
 def constuirMaquina(file):
     tree = ET.parse(file)
@@ -51,6 +61,40 @@ def construirSimulacion(file):
     #     print(producto)
     #     pr = maquina.getProducto(producto)
     #     pr.getPasos()
+
+
+def printPasos():
+    while not listadoSimulacion.estaVacia():
+        nombreProducto = listadoSimulacion.pop()
+        print(nombreProducto)
+        product1 = maquina.getProducto(nombreProducto)
+        product1.getPasos()
+        paso = product1.pasos.cabeza
+        # print(type(paso.obtenerDato()["linea"]))
+        lineasProducto = Cola()
+
+        #se recorren los pasos del producto para identificar la cantiad de lineas que recorre y se crea una cola con las lineas que necesita el producto
+        while paso != None:  
+            linea = maquina.getLinea(int(paso.obtenerDato()["linea"]))
+            if not lineasProducto.buscar(linea):
+                lineasProducto.agregar(linea)
+            paso = paso.obtenerSiguiente()
+        print(nombreProducto+" usa "+str(lineasProducto.tamano())+" lineas.")
+
+        lnActual = lineasProducto.cabeza
+        while lnActual != None:
+
+            pasoActual = product1.pasos.cabeza
+            while pasoActual != None:
+                p1 = lnActual.obtenerDato().posicion
+                p2 = pasoActual.obtenerDato()["componente"]
+                lnActual.obtenerDato().tiempo = tiempoMovimiento(p1,p2)
+                lnActual.obtenerDato().posicion = p2
+                pasoActual = pasoActual.obtenerSiguiente()
+            
+            print("Tiempo linea: ",lnActual.obtenerDato().id," = ", lnActual.obtenerDato().tiempo)
+            lnActual = lnActual.obtenerSiguiente()
+
 
 # fileTxt = "C:/Users/archi/Desktop/USAC 2021/IPC2/Laboratorio/EntradasProyecto2/Entradas/entrada1.xml"
 # constuirMaquina(fileTxt)
