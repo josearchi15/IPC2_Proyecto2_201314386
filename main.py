@@ -19,6 +19,16 @@ def tiempoMovimiento(pi, pf):
 	elif p2 > p1:
 		return p2 - p1
 
+def tiempoEnsamble(linea1, linea2):
+    t1 = linea1.tEnsamble
+    t2 = linea2.tEnsamble
+    if t1 > t2:
+        return int(t1)
+    elif t2 > t1:
+        return int(t2)
+    else:
+        return int(t1)
+
 maquina = Maquina("Maquina") 
 def constuirMaquina(file):
     tree = ET.parse(file)
@@ -66,35 +76,48 @@ def construirSimulacion(file):
 def printPasos():
     while not listadoSimulacion.estaVacia():
         nombreProducto = listadoSimulacion.pop()
-        print(nombreProducto)
-        product1 = maquina.getProducto(nombreProducto)
-        product1.getPasos()
-        paso = product1.pasos.cabeza
-        # print(type(paso.obtenerDato()["linea"]))
-        lineasProducto = Cola()
+        madeProducto(nombreProducto)
 
-        #se recorren los pasos del producto para identificar la cantiad de lineas que recorre y se crea una cola con las lineas que necesita el producto
-        while paso != None:  
-            linea = maquina.getLinea(int(paso.obtenerDato()["linea"]))
-            if not lineasProducto.buscar(linea):
-                lineasProducto.agregar(linea)
-            paso = paso.obtenerSiguiente()
-        print(nombreProducto+" usa "+str(lineasProducto.tamano())+" lineas.")
 
-        lnActual = lineasProducto.cabeza
-        while lnActual != None:
 
-            pasoActual = product1.pasos.cabeza
-            while pasoActual != None:
-                p1 = lnActual.obtenerDato().posicion
-                p2 = pasoActual.obtenerDato()["componente"]
-                lnActual.obtenerDato().tiempo = tiempoMovimiento(p1,p2)
-                lnActual.obtenerDato().posicion = p2
-                pasoActual = pasoActual.obtenerSiguiente()
-            
-            print("Tiempo linea: ",lnActual.obtenerDato().id," = ", lnActual.obtenerDato().tiempo)
-            lnActual = lnActual.obtenerSiguiente()
 
+def madeProducto(nombreProducto):
+    product = maquina.getProducto(nombreProducto)
+    print("Construyendo: --->  ", product.nombre)
+
+
+    #se recorren los pasos del producto para identificar la cantiad de lineas que recorre y se crea una cola con las lineas que necesita el producto
+    pasos = Cola()
+    product.getPasos()
+    pasos = product.pasos
+    lineasProducto2 = Cola()
+    while not pasos.estaVacia():
+        paso = pasos.pop()  #se obtiene objeto {linea, componente}
+        print("Linea: "+paso["linea"]+" componente: "+paso["componente"])
+        linea = maquina.getLinea(int(paso["linea"]))
+        if not lineasProducto2.buscar(linea):
+            lineasProducto2.agregar(linea)
+    print(nombreProducto+" usa "+str(lineasProducto2.tamano())+" lineas.")
+
+    pasosEnsambles = Cola()
+    product.getPasos()
+    pasosEnsambles = product.pasos
+    tiempoEnsambles = 0
+    ensambles = 0
+    pasoActual = pasosEnsambles.cabeza
+    # print(type(pasoActual.obtenerDato()["linea"]))
+    # linea = maquina.getLinea(int(pasoActual.obtenerDato()['linea']))
+    # print(linea.id)
+    while pasoActual.obtenerSiguiente() != None:
+        pasoSiguiente = pasoActual.obtenerSiguiente()
+        ensambles += 1
+        l1 = maquina.getLinea(int(pasoActual.obtenerDato()['linea']))
+        l2 = maquina.getLinea(int(pasoSiguiente.obtenerDato()['linea']))
+        tiempoEnsambles += tiempoEnsamble(l1, l2)
+        pasoActual = pasoActual.obtenerSiguiente()
+    print(product.nombre+" tardara: "+str(tiempoEnsambles)+" segundos y "+str(ensambles)+" pasos \n")
+
+    
 
 # fileTxt = "C:/Users/archi/Desktop/USAC 2021/IPC2/Laboratorio/EntradasProyecto2/Entradas/entrada1.xml"
 # constuirMaquina(fileTxt)

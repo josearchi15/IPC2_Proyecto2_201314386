@@ -72,4 +72,5 @@ class Cola:
             primero = actual
             actual = actual.obtenerSiguiente()
         self.removerPop(primero)
-        return primero.obtenerDato()
+        return primero.obtenerDato()  #retorna el dato
+        # return primero #retorna el nodo
