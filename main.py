@@ -9,25 +9,6 @@ def cleanText(text):
     cleanTxt = text.replace(" ", "").replace("\n","")
     return cleanTxt
 
-def tiempoMovimiento(pi, pf):
-	p1 = int(pi)
-	p2 = int(pf)
-	if p1 == p2:
-		return 0
-	elif p1 > p2:
-		return p1 - p2
-	elif p2 > p1:
-		return p2 - p1
-
-def tiempoEnsamble(linea1, linea2):
-    t1 = linea1.tEnsamble
-    t2 = linea2.tEnsamble
-    if t1 > t2:
-        return int(t1)
-    elif t2 > t1:
-        return int(t2)
-    else:
-        return int(t1)
 
 maquina = Maquina("Maquina") 
 def constuirMaquina(file):
@@ -66,12 +47,6 @@ def construirSimulacion(file):
             for prod in el:
                 listadoSimulacion.agregar(str(cleanText(prod.text)))
 
-    # while not listadoSimulacion.estaVacia():
-    #     producto = listadoSimulacion.pop() 
-    #     print(producto)
-    #     pr = maquina.getProducto(producto)
-    #     pr.getPasos()
-
 
 def printPasos():
     while not listadoSimulacion.estaVacia():
@@ -97,27 +72,27 @@ def madeProducto(nombreProducto):
         linea = maquina.getLinea(int(paso["linea"]))
         if not lineasProducto2.buscar(linea):
             lineasProducto2.agregar(linea)
+        if lineasProducto2.buscar(linea):
+            linea.agregarPaso(paso)
     print(nombreProducto+" usa "+str(lineasProducto2.tamano())+" lineas.")
 
+    # se recorren los pasos para ver cuantos pasos/ensambles hay y el tiempo que estos se llevaran
     pasosEnsambles = Cola()
     product.getPasos()
     pasosEnsambles = product.pasos
     tiempoEnsambles = 0
     ensambles = 0
-    pasoActual = pasosEnsambles.cabeza
-    # print(type(pasoActual.obtenerDato()["linea"]))
-    # linea = maquina.getLinea(int(pasoActual.obtenerDato()['linea']))
-    # print(linea.id)
-    while pasoActual.obtenerSiguiente() != None:
-        pasoSiguiente = pasoActual.obtenerSiguiente()
+
+    pasoActual = pasosEnsambles.pop()
+    while not pasosEnsambles.estaVacia():
+        pasoSiguiente = pasosEnsambles.pop()
         ensambles += 1
-        l1 = maquina.getLinea(int(pasoActual.obtenerDato()['linea']))
-        l2 = maquina.getLinea(int(pasoSiguiente.obtenerDato()['linea']))
-        tiempoEnsambles += tiempoEnsamble(l1, l2)
-        pasoActual = pasoActual.obtenerSiguiente()
-    print(product.nombre+" tardara: "+str(tiempoEnsambles)+" segundos y "+str(ensambles)+" pasos \n")
+        l2 = maquina.getLinea(int(pasoSiguiente['linea']))
+        tiempoEnsambles += l2.tEnsamble
+    print(product.nombre+" tardara: "+str(tiempoEnsambles)+" segundos y "+str(ensambles)+" pasos \n")    
 
     
 
 # fileTxt = "C:/Users/archi/Desktop/USAC 2021/IPC2/Laboratorio/EntradasProyecto2/Entradas/entrada1.xml"
 # constuirMaquina(fileTxt)
+

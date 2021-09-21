@@ -27,10 +27,5 @@ class Producto:
             }
             self.pasos.agregar(punto)
 
-        
-        # while not self.pasos.estaVacia():
-        #     p = self.pasos.pop()
-        #     print(p["linea"],"->", p["componente"])
-
 # p1 = Producto("Smartwatch", "L1pC2pL2pC1pL2pC2pL1pC4p")
 # p1.getPasos()

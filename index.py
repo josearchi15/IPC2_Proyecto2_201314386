@@ -43,8 +43,4 @@ printt.pack()
 lista = Button(root, text='Imprimir listado', command=listado)
 lista.pack()
 
-
-
-# action2 = Button(root, text='Procesar', command=lambda: constuirMaquina(archivo.get())).pack()
-
 root.mainloop()
