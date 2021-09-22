@@ -8,6 +8,7 @@ class Producto:
         self.pasos = Cola()
         self.tiempo = 0
         self.lineasProduccion = Cola()
+        self.productoFinalizado = False
 
     def getPasos(self):
         arr = self.instrucciones.split('p')
@@ -47,6 +48,33 @@ class Producto:
         print(self.nombre+" usa "+str(lineasProducto2.tamano())+" lineas. \n")
         # return lineasProducto2
 
+
+    def construir(self):
+        while not self.productoFinalizado:
+            self.tiempo += 1
+
+            # revisar status lineas
+
+
+            # avanzar lineas
+            lineasARevisar = self.lineasProduccion.tamano()
+            for l in range(0,lineasARevisar,1):
+                lineaRevisar = self.lineasProduccion.pop()
+                if self.tiempo == 1:
+                    lineaRevisar.firstStep()
+                lineaRevisar.move()
+                self.lineasProduccion.agregar(lineaRevisar)
+
+            for l in range(0,lineasARevisar,1):
+                lineaRevisar = self.lineasProduccion.pop()
+                lineaRevisar.getInfo()
+                self.lineasProduccion.agregar(lineaRevisar)
+
+            # print("Linea revisada")
+            # lineaRevisada = self.lineasProduccion.pop()
+            # lineaRevisada.getInfo()
+            self.productoFinalizado = True
+            
 
 
 

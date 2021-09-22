@@ -52,5 +52,12 @@ class Maquina():
         return actual.obtenerDato()
     
     
-    def construirProducto(self, producto):
-        pass
+    def resetLineas(self):
+        for l in range(0,self.noLineas,1):
+                lineaRevisar = self.lineasProduccion.pop()
+                # lineaRevisar.getInfo()
+                lineaRevisar.posicion = 1
+                lineaRevisar.status = ""
+                lineaRevisar.colaPasos = Cola()
+                lineaRevisar.pasoActual = None
+                self.lineasProduccion.agregar(lineaRevisar)

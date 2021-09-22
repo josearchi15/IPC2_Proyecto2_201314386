@@ -13,10 +13,10 @@ class LineaProduccion:
 
 
     def getInfo(self):
-        print("ID: ",self.id)
-        print("No. componentes: ", self.componentes)
-        print("Tiempo de Ensamblaje: ",self.tEnsamble)
+        print("ID Linea: ",self.id)
         print("Posicion: ", self.posicion)
+        print("Status: ", self.status)
+        print("Paso Actual: ", self.pasoActual)
 
     def agregarPaso(self, paso):
         self.colaPasos.agregar(paso)
@@ -26,11 +26,17 @@ class LineaProduccion:
 
     def move(self):
         destino = int(self.pasoActual['componente'])
-        if self.posicion == destino:
-            self.status = "Listo"
-        elif self.posicion > destino:
-            self.status = "Moviendo"
+        if self.posicion > destino:
             self.posicion -= 1
+            if self.posicion == destino:
+                self.status = "Lista"
+            else:
+                self.status = "Moviendo"
         elif self.posicion < destino:
-            self.status = "Moviendo"
             self.posicion += 1
+            if self.posicion == destino:
+                self.status = "Lista"
+            else:
+                self.status = "Moviendo"
+        elif self.posicion == destino:
+            self.status = "Lista"
