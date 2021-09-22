@@ -16,6 +16,7 @@ class LineaProduccion:
         print("ID: ",self.id)
         print("No. componentes: ", self.componentes)
         print("Tiempo de Ensamblaje: ",self.tEnsamble)
+        print("Posicion: ", self.posicion)
 
     def agregarPaso(self, paso):
         self.colaPasos.agregar(paso)
@@ -24,7 +25,7 @@ class LineaProduccion:
         self.pasoActual = self.colaPasos.pop()
 
     def move(self):
-        destino = self.pasoActual['componente']
+        destino = int(self.pasoActual['componente'])
         if self.posicion == destino:
             self.status = "Listo"
         elif self.posicion > destino:

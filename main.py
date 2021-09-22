@@ -51,23 +51,6 @@ def printPasos():
         nombreProducto = listadoSimulacion.pop()
         madeProducto(nombreProducto)
 
-def getLineasProducto(producto):
-    #se recorren los pasos del producto para identificar la cantiad de lineas que recorre y se crea una cola con las lineas que necesita el producto
-    pasos = Cola()
-    producto.getPasos()
-    pasos = producto.pasos
-    lineasProducto2 = Cola()
-    while not pasos.estaVacia():
-        paso = pasos.pop()  #se obtiene objeto {linea, componente}
-        print("Linea: "+paso["linea"]+" componente: "+paso["componente"])
-        linea = maquina.getLinea(int(paso["linea"]))
-        if not lineasProducto2.buscar(linea):
-            lineasProducto2.agregar(linea)
-        if lineasProducto2.buscar(linea):
-            linea.agregarPaso(paso)
-    print(producto.nombre+" usa "+str(lineasProducto2.tamano())+" lineas.")
-    return lineasProducto2
-
 
 def getPasosEnsamblaje(producto):
     # se recorren los pasos para ver cuantos pasos/ensambles hay y el tiempo que estos se llevaran
@@ -89,23 +72,35 @@ def getPasosEnsamblaje(producto):
 def madeProducto(nombreProducto):
     product = maquina.getProducto(nombreProducto)
     print("Construyendo: --->  ", product.nombre)
-    lineasProducto = Cola()
-    lineasProducto = getLineasProducto(product)
-    getPasosEnsamblaje(product)
 
-    pasosProducto = Cola()
-    product.getPasos()
-    pasosProducto = product.pasos
+    product.getLineasProducto(maquina)
 
-    productoFinalizado = False
-    segundos = 0
-    while not productoFinalizado:
-        segundos += 1
-        lineaRevision = lineasProducto.cabeza
+
+
+    # lineasProducto = Cola()
+    # lineasProducto = getLineasProducto(product)
+    # getPasosEnsamblaje(product)
+
+    # pasosProducto = Cola()
+    # product.getPasos()
+    # pasosProducto = product.pasos
+
+    # productoFinalizado = False
+    # segundos = 0
+    # while not productoFinalizado:
+    #     segundos += 1
+    #     lineaRevision = lineasProducto.cabeza
         
-        while lineaRevision != None:
-            linea = lineaRevision.obtenerDato()
-            if segundos == 1:
-                linea.iniciar()
-            linea.move()
-            lineaRevision = lineaRevision.obtenerSiguiente()
+    #     while lineaRevision != None:
+    #         linea = lineaRevision.obtenerDato()
+    #         if segundos == 1:
+    #             linea.firstStep()
+    #         linea.move()
+    #         lineaRevision = lineaRevision.obtenerSiguiente()
+
+    #     print("liena Revision")
+    #     lineasProducto.cabeza.obtenerDato().getInfo()
+    #     productoFinalizado = True
+    
+    # lineasProducto = None 
+    # product = None
