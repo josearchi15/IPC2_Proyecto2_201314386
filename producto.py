@@ -50,6 +50,7 @@ class Producto:
 
 
     def construir(self):
+        
         while not self.productoFinalizado:
             self.tiempo += 1
 
