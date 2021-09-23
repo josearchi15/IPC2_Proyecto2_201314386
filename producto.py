@@ -10,6 +10,14 @@ class Producto:
         self.lineasProduccion = Cola()
         self.productoFinalizado = False
 
+    def getTiempoEnsamblaje(self, idLinea):
+        actual = self.lineasProduccion.cabeza
+        while actual != None:
+            if actual.obtenerDato().id == idLinea:
+                return actual.obtenerDato().tEnsamble
+            actual = actual.obtenerSiguiente()
+
+
     def getPasos(self):
         arr = self.instrucciones.split('p')
         puntoLinea = Cola()
@@ -76,7 +84,7 @@ class Producto:
                 lineaRevisar.move()
                 self.lineasProduccion.agregar(lineaRevisar)
 
-            # revisar status lineas
+            # revisar status pasos
             for l in range(0,lineasARevisar,1):
                 lineaRevisar = self.lineasProduccion.pop()
                 if lineaRevisar.id == int(paso1['linea']):
@@ -87,12 +95,33 @@ class Producto:
                     if lineaRevisar.posicion == int(paso2['componente']) and lineaRevisar.status == "Lista":
                         print('Paso2 listo para ensamblar')
                         paso2['status'] = True
-                if paso1['status'] and paso2['status']:
-                    print('\n Ensamblandooo!!\n')
-                    self.productoFinalizado = True
-                        
 
                 self.lineasProduccion.agregar(lineaRevisar)
+            
+            # si estan los pasos listos ensamblar
+            if paso1['status'] and paso2['status']:
+                print('\n Ensamblandooo!!\n')
+                tiempoEnsamble = self.getTiempoEnsamblaje(int(paso2['linea']))
+
+                while tiempoEnsamble > 0:
+                    self.tiempo += 1
+                    # print('Ensamblandooo----')
+
+                    # esto lo tengo que encerrar en un while
+                    for l in range(0,lineasARevisar,1):
+                        linea = self.lineasProduccion.pop()
+                        if linea.id == int(paso1['linea']) or linea.id == int(paso2['linea']):
+                            linea.status = "Ensamblando"
+                        else:
+                            linea.move()
+                        self.lineasProduccion.agregar(linea)
+
+                    tiempoEnsamble -= 1
+
+
+                self.productoFinalizado = True
+                        
+
 
 
             # en este bloque solo se imprime el status de cada linea despues de haberse movido
@@ -101,8 +130,8 @@ class Producto:
                 lineaRevisar.getInfo()
                 self.lineasProduccion.agregar(lineaRevisar)
 
-
-            # self.productoFinalizado = True
+        
+        print('-------------------------------------------------Tiempo total: ',self.tiempo)
             
 
 

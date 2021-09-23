@@ -71,44 +71,15 @@ def getPasosEnsamblaje(producto):
     
 def madeProducto(nombreProducto):
     product = maquina.getProducto(nombreProducto)
-    print("\n Construyendo: --->  ", product.nombre)
+    print("\n****Construyendo: --->  ", product.nombre)
 
     product.getLineasProducto(maquina)
     product.construir()
 
     maquina.resetLineas()
-    print("Status lineas maquina")
-    for l in range(0,maquina.noLineas,1):
-                lineaRevisar = maquina.lineasProduccion.pop()
-                lineaRevisar.getInfo()
-                maquina.lineasProduccion.agregar(lineaRevisar)
 
-    # lineasProducto = Cola()
-    # lineasProducto = getLineasProducto(product)
-    # getPasosEnsamblaje(product)
-
-
-    # --------------------------------------------
-    # pasosProducto = Cola()
-    # product.getPasos()
-    # pasosProducto = product.pasos
-
-    # productoFinalizado = False
-    # segundos = 0
-    # while not productoFinalizado:
-    #     segundos += 1
-    #     lineaRevision = lineasProducto.cabeza
-        
-    #     while lineaRevision != None:
-    #         linea = lineaRevision.obtenerDato()
-    #         if segundos == 1:
-    #             linea.firstStep()
-    #         linea.move()
-    #         lineaRevision = lineaRevision.obtenerSiguiente()
-
-    #     print("liena Revision")
-    #     lineasProducto.cabeza.obtenerDato().getInfo()
-    #     productoFinalizado = True
-    
-    # lineasProducto = None 
-    # product = None
+    # print("Status lineas maquina")
+    # for l in range(0,maquina.noLineas,1):
+    #             lineaRevisar = maquina.lineasProduccion.pop()
+    #             lineaRevisar.getInfo()
+    #             maquina.lineasProduccion.agregar(lineaRevisar)

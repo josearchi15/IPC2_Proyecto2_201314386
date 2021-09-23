@@ -28,6 +28,11 @@ def listado():
         print(actual.obtenerDato())
         Label(root, text=actual.obtenerDato()).pack()
         actual = actual.obtenerSiguiente()
+
+
+
+
+# GUI Aplicacion
     
 abrir = Button(root, text='Seleccionar archivo', command=openFile)
 abrir.pack()
