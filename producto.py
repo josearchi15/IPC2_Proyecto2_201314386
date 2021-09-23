@@ -51,14 +51,24 @@ class Producto:
 
     def construir(self):
         
+        colaPasos = Cola()
+        self.getPasos()
+        colaPasos = self.pasos
+        paso1 = colaPasos.pop()
+        paso1["status"] = False
+        paso2 = colaPasos.pop()
+        paso2["status"] = False
+        # print('Paso1: ', paso1)
+        # print('Paso2: ', paso2)
+
+        
         while not self.productoFinalizado:
             self.tiempo += 1
+            lineasARevisar = self.lineasProduccion.tamano() #numero de lineas a revisar cada vez
 
-            # revisar status lineas
 
 
             # avanzar lineas
-            lineasARevisar = self.lineasProduccion.tamano()
             for l in range(0,lineasARevisar,1):
                 lineaRevisar = self.lineasProduccion.pop()
                 if self.tiempo == 1:
@@ -66,15 +76,33 @@ class Producto:
                 lineaRevisar.move()
                 self.lineasProduccion.agregar(lineaRevisar)
 
+            # revisar status lineas
+            for l in range(0,lineasARevisar,1):
+                lineaRevisar = self.lineasProduccion.pop()
+                if lineaRevisar.id == int(paso1['linea']):
+                    if lineaRevisar.posicion == int(paso1['componente']) and lineaRevisar.status == "Lista":
+                        print('Paso1 listo para ensamblar')
+                        paso1['status'] = True
+                if lineaRevisar.id == int(paso2['linea']):
+                    if lineaRevisar.posicion == int(paso2['componente']) and lineaRevisar.status == "Lista":
+                        print('Paso2 listo para ensamblar')
+                        paso2['status'] = True
+                if paso1['status'] and paso2['status']:
+                    print('\n Ensamblandooo!!\n')
+                    self.productoFinalizado = True
+                        
+
+                self.lineasProduccion.agregar(lineaRevisar)
+
+
+            # en este bloque solo se imprime el status de cada linea despues de haberse movido
             for l in range(0,lineasARevisar,1):
                 lineaRevisar = self.lineasProduccion.pop()
                 lineaRevisar.getInfo()
                 self.lineasProduccion.agregar(lineaRevisar)
 
-            # print("Linea revisada")
-            # lineaRevisada = self.lineasProduccion.pop()
-            # lineaRevisada.getInfo()
-            self.productoFinalizado = True
+
+            # self.productoFinalizado = True
             
 
 

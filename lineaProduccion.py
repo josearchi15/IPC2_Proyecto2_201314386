@@ -37,17 +37,16 @@ class LineaProduccion:
             self.posicion -= 1
             if self.posicion == destino:
                 self.status = "Lista"
-                self.nextStep()
+                # self.nextStep()
             else:
                 self.status = "Moviendo"
         elif self.posicion < destino:
             self.posicion += 1
             if self.posicion == destino:
                 self.status = "Lista"
-                self.nextStep()
+                # self.nextStep()
             else:
                 self.status = "Moviendo"
         elif self.posicion == destino:
-            # if self.status != "Lista":
             self.status = "Lista"
-            self.nextStep()
+            # self.nextStep()
