@@ -128,23 +128,37 @@ class Producto:
                     self.tiempo += 1
 
 
-                    # mientras se este ensamblando, linea = paso.linea status igual "esamblando"
-                    for l in range(0,lineasARevisar,1):
-                        linea = self.lineasProduccion.pop()
-                        if linea.id == int(paso1['linea']) or linea.id == int(paso2['linea']): #analizar este cambio, que se solo si es del paso 2
-                            linea.status = "Ensamblando"
-                        else:
-                            linea.move()
-                        
-                        self.lineasProduccion.agregar(linea)
+# -------------------------------------------MODIFICACION TENTATIVA
+                    if noEnsambles <= 1:
+                        for l in range(0,lineasARevisar,1):
+                            linea = self.lineasProduccion.pop()
+                            if linea.id == int(paso1['linea']) or linea.id == int(paso2['linea']): #analizar este cambio, que se solo si es del paso 2
+                                linea.status = "Ensamblando"
+                            else:
+                                linea.move()
+                            
+                            self.lineasProduccion.agregar(linea)
+
+                    else:
+                        for l in range(0,lineasARevisar,1):
+                            linea = self.lineasProduccion.pop()
+                            if linea.id == int(paso2['linea']): 
+                                linea.status = "Ensamblando"
+                            else:
+                                linea.move()
+                            
+                            self.lineasProduccion.agregar(linea)
 
                     tiempoEnsamble -= 1
                 
 
                 #actualizar pasos
-                paso1 = paso2
-                paso2 = colaPasos.pop()
-                paso2["status"] = False
+                paso1 = paso2 
+                if colaPasos.estaVacia():
+                    self.productoFinalizado = True
+                else:               #validar este paso cuando ya no hay mas pasos**********
+                    paso2 = colaPasos.pop()
+                    paso2["status"] = False
 
                 # cambiar de paso en lineas ensambladas
                 for l in range(0,lineasARevisar,1):
