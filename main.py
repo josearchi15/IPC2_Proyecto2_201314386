@@ -66,7 +66,8 @@ def getPasosEnsamblaje(producto):
         ensambles += 1
         l2 = maquina.getLinea(int(pasoSiguiente['linea']))
         tiempoEnsambles += l2.tEnsamble
-    print(producto.nombre+" tardara: "+str(tiempoEnsambles)+" segundos y "+str(ensambles)+" pasos \n")    
+    print(producto.nombre+" tardara: "+str(tiempoEnsambles)+" segundos y "+str(ensambles)+" pasos \n")  
+    producto.ensambles = ensambles  
 
     
 def madeProducto(nombreProducto):
@@ -74,6 +75,8 @@ def madeProducto(nombreProducto):
     print("\n****Construyendo: --->  ", product.nombre)
 
     product.getLineasProducto(maquina)
+    product.getPasosEnsamblaje(maquina)
+    print("Ensambles: --->", product.ensambles)
     product.construir()
 
     maquina.resetLineas()

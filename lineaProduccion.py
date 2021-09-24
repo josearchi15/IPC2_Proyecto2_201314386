@@ -29,24 +29,30 @@ class LineaProduccion:
         
 
     def nextStep(self):
-        self.pasoActual = self.colaPasos.pop()
+        if self.colaPasos.estaVacia():
+            self.status = "Fin"
+        else:
+            self.pasoActual = self.colaPasos.pop()
 
     def move(self):
-        destino = int(self.pasoActual['componente'])
-        if self.posicion > destino:
-            self.posicion -= 1
-            if self.posicion == destino:
+        if self.status == "Fin":
+            self.status = "Fin"
+        else:
+            destino = int(self.pasoActual['componente'])
+            if self.posicion > destino:
+                self.posicion -= 1
+                if self.posicion == destino:
+                    self.status = "Lista"
+                    # self.nextStep()
+                else:
+                    self.status = "Moviendo"
+            elif self.posicion < destino:
+                self.posicion += 1
+                if self.posicion == destino:
+                    self.status = "Lista"
+                    # self.nextStep()
+                else:
+                    self.status = "Moviendo"
+            elif self.posicion == destino:
                 self.status = "Lista"
                 # self.nextStep()
-            else:
-                self.status = "Moviendo"
-        elif self.posicion < destino:
-            self.posicion += 1
-            if self.posicion == destino:
-                self.status = "Lista"
-                # self.nextStep()
-            else:
-                self.status = "Moviendo"
-        elif self.posicion == destino:
-            self.status = "Lista"
-            # self.nextStep()
