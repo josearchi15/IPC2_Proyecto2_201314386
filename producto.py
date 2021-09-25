@@ -128,8 +128,7 @@ class Producto:
                     self.tiempo += 1
 
 
-# -------------------------------------------MODIFICACION TENTATIVA
-                    if noEnsambles <= 1:
+                    if noEnsambles <= 1: #MODIFICACION TENTATIVA
                         for l in range(0,lineasARevisar,1):
                             linea = self.lineasProduccion.pop()
                             if linea.id == int(paso1['linea']) or linea.id == int(paso2['linea']): #analizar este cambio, que se solo si es del paso 2

@@ -10,6 +10,7 @@ class LineaProduccion:
         self.status = ""
         self.colaPasos = Cola()
         self.pasoActual = None
+        self.log = {}
 
 
     def getInfo(self):
@@ -56,3 +57,11 @@ class LineaProduccion:
             elif self.posicion == destino:
                 self.status = "Lista"
                 # self.nextStep()
+
+    def addLog(self, segundo):
+        seg = str(segundo)
+        self.log[seg]= "C"+self.posicion+" "+self.status
+        
+    def printLog(self):
+        for log in self.log:
+            print(log)
