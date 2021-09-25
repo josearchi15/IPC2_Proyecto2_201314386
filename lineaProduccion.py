@@ -60,8 +60,8 @@ class LineaProduccion:
 
     def addLog(self, segundo):
         seg = str(segundo)
-        self.log[seg]= "C"+self.posicion+" "+self.status
+        self.log[seg]= "C"+str(self.posicion)+" "+self.status
         
     def printLog(self):
         for log in self.log:
-            print(log)
+            print(log, self.log[log])

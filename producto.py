@@ -100,8 +100,10 @@ class Producto:
             for l in range(0,lineasARevisar,1):
                 lineaRevisar = self.lineasProduccion.pop()
                 if self.tiempo == 1:
+                    lineaRevisar.log = {}
                     lineaRevisar.firstStep()
                 lineaRevisar.move()
+                lineaRevisar.addLog(self.tiempo)
                 self.lineasProduccion.agregar(lineaRevisar)
 
             # revisar si alguna linea ya esta lista para alguno de los pasos
@@ -133,8 +135,10 @@ class Producto:
                             linea = self.lineasProduccion.pop()
                             if linea.id == int(paso1['linea']) or linea.id == int(paso2['linea']): #analizar este cambio, que se solo si es del paso 2
                                 linea.status = "Ensamblando"
+                                linea.addLog(self.tiempo)
                             else:
                                 linea.move()
+                                linea.addLog(self.tiempo)
                             
                             self.lineasProduccion.agregar(linea)
 
@@ -143,9 +147,10 @@ class Producto:
                             linea = self.lineasProduccion.pop()
                             if linea.id == int(paso2['linea']): 
                                 linea.status = "Ensamblando"
+                                linea.addLog(self.tiempo)
                             else:
                                 linea.move()
-                            
+                                linea.addLog(self.tiempo)
                             self.lineasProduccion.agregar(linea)
 
                     tiempoEnsamble -= 1
@@ -176,13 +181,18 @@ class Producto:
 
 
             # en este bloque solo se imprime el status de cada linea despues de haberse movido
-            for l in range(0,lineasARevisar,1):
-                lineaRevisar = self.lineasProduccion.pop()
-                lineaRevisar.getInfo()
-                self.lineasProduccion.agregar(lineaRevisar)
+            # for l in range(0,lineasARevisar,1):
+            #     lineaRevisar = self.lineasProduccion.pop()
+            #     lineaRevisar.getInfo()
+            #     self.lineasProduccion.agregar(lineaRevisar)
 
         
         print('-------------------------------------------------Tiempo total: ',self.tiempo)
+        for l in range(0,lineasARevisar,1):
+                lineaRevisar = self.lineasProduccion.pop()
+                print("\n Log de linea: ",str(lineaRevisar.id))
+                lineaRevisar.printLog()
+                self.lineasProduccion.agregar(lineaRevisar)
             
 
 
