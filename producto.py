@@ -1,5 +1,8 @@
 from cola import Cola
 from maquina import Maquina
+from tkinter import *
+from tkinter import ttk
+
 
 class Producto:
     def __init__(self, nombre, instrucciones):
@@ -188,13 +191,69 @@ class Producto:
 
         
         print('-------------------------------------------------Tiempo total: ',self.tiempo)
-        for l in range(0,lineasARevisar,1):
-                lineaRevisar = self.lineasProduccion.pop()
-                print("\n Log de linea: ",str(lineaRevisar.id))
-                lineaRevisar.printLog()
-                self.lineasProduccion.agregar(lineaRevisar)
+        # for l in range(0,lineasARevisar,1):
+        #         lineaRevisar = self.lineasProduccion.pop()
+        #         print("\n Log de linea: ",str(lineaRevisar.id))
+        #         lineaRevisar.printLog()
+        #         self.lineasProduccion.agregar(lineaRevisar)
             
 
+    def showTable(self):
+        root = Tk()
+        root.title(self.nombre)
+        root.geometry("500x500")
+
+        root.columnconfigure(0, weight=1)
+        root.columnconfigure(1, weight=1)
+        root.columnconfigure(2, weight=1)
+        root.columnconfigure(3, weight=1)
+        myTree = ttk.Treeview(root)
+
+        # columns y headers despues de segundos
+        headers = ["Segundos"]
+        for l in range(0, self.lineasProduccion.tamano(), 1):
+            lineaRevisar = self.lineasProduccion.pop()
+            header = "Linea "+str(lineaRevisar.id)
+            headers.append(header)
+            self.lineasProduccion.agregar(lineaRevisar)
+        labels = tuple(headers)
+        print(labels)
+
+        #define columns 
+        myTree['columns'] = headers
+
+        # formati columns
+        myTree.column("#0", width=0)
+        myTree.column("Segundos", anchor=CENTER, minwidth=40, width=40)
+        # create headings
+        myTree.heading("#0", text="", anchor=W)
+        myTree.heading("Segundos", text="Segundos", anchor=W)
+        for l in range(0, self.lineasProduccion.tamano(), 1):
+            lineaRevisar = self.lineasProduccion.pop()
+            label = "Linea "+str(lineaRevisar.id)
+            myTree.column(label, anchor=W, minwidth=80)
+            myTree.heading(label, text=label, anchor=W)
+            self.lineasProduccion.agregar(lineaRevisar)
+
+        # construccion de tuplas
+        logCompleto = {}
+        for l in range(0, self.lineasProduccion.tamano(), 1):
+            lineaRevisar = self.lineasProduccion.pop()
+            logCompleto[lineaRevisar.id] = lineaRevisar.log
+            self.lineasProduccion.agregar(lineaRevisar)
+
+        for segundo in range(1, self.tiempo+1):
+            registro = [segundo]
+            for linea in logCompleto:
+                registro.append(logCompleto[linea][str(segundo)])
+                # print(logCompleto[linea][str(segundo)])
+            lineaTup = tuple(registro)
+            myTree.insert(parent='', index="end", values=lineaTup)
+            print(lineaTup)
+
+        myTree.grid(row=0, column=0, sticky='nsew', columnspan=4)
+        # myTree.pack(pady=20)
+        root.mainloop()
 
 
 

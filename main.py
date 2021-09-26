@@ -78,6 +78,7 @@ def madeProducto(nombreProducto):
     product.getPasosEnsamblaje(maquina)
     print("Ensambles: --->", product.ensambles)
     product.construir()
+    product.showTable()
 
     maquina.resetLineas()
 
