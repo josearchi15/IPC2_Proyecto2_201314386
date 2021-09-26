@@ -121,6 +121,12 @@ class Producto:
         for seg in range(1, self.tiempo+1, 1):
             segundo = ET.SubElement(elaOptima, 'Tiempo', attrib={'NoSegundo':str(seg)})
 
+            for l in range(0, self.lineasProduccion.tamano(), 1):
+                lineaRevisar = self.lineasProduccion.pop()
+                pasoLinea = ET.SubElement(segundo, 'LineaEnsamblaje', attrib={'NoLinea':str(lineaRevisar.id)})
+                pasoLinea.text = lineaRevisar.log[str(seg)]
+                self.lineasProduccion.agregar(lineaRevisar)
+
         xmlstr = minidom.parseString(ET.tostring(xml, encoding='unicode')).toprettyxml(indent="   ")
         with open("xmls/"+str(self.nombre)+".xml", "w") as f:
             f.write(xmlstr)

@@ -3,36 +3,129 @@
    <Nombre>SuperComputadora</Nombre>
    <TiempoTotal>31</TiempoTotal>
    <ElaboracionOptima>
-      <Tiempo NoSegundo="1"/>
-      <Tiempo NoSegundo="2"/>
-      <Tiempo NoSegundo="3"/>
-      <Tiempo NoSegundo="4"/>
-      <Tiempo NoSegundo="5"/>
-      <Tiempo NoSegundo="6"/>
-      <Tiempo NoSegundo="7"/>
-      <Tiempo NoSegundo="8"/>
-      <Tiempo NoSegundo="9"/>
-      <Tiempo NoSegundo="10"/>
-      <Tiempo NoSegundo="11"/>
-      <Tiempo NoSegundo="12"/>
-      <Tiempo NoSegundo="13"/>
-      <Tiempo NoSegundo="14"/>
-      <Tiempo NoSegundo="15"/>
-      <Tiempo NoSegundo="16"/>
-      <Tiempo NoSegundo="17"/>
-      <Tiempo NoSegundo="18"/>
-      <Tiempo NoSegundo="19"/>
-      <Tiempo NoSegundo="20"/>
-      <Tiempo NoSegundo="21"/>
-      <Tiempo NoSegundo="22"/>
-      <Tiempo NoSegundo="23"/>
-      <Tiempo NoSegundo="24"/>
-      <Tiempo NoSegundo="25"/>
-      <Tiempo NoSegundo="26"/>
-      <Tiempo NoSegundo="27"/>
-      <Tiempo NoSegundo="28"/>
-      <Tiempo NoSegundo="29"/>
-      <Tiempo NoSegundo="30"/>
-      <Tiempo NoSegundo="31"/>
+      <Tiempo NoSegundo="1">
+         <LineaEnsamblaje NoLinea="1">C2 Moviendo</LineaEnsamblaje>
+         <LineaEnsamblaje NoLinea="2">C1 Lista</LineaEnsamblaje>
+      </Tiempo>
+      <Tiempo NoSegundo="2">
+         <LineaEnsamblaje NoLinea="1">C3 Lista</LineaEnsamblaje>
+         <LineaEnsamblaje NoLinea="2">C1 Lista</LineaEnsamblaje>
+      </Tiempo>
+      <Tiempo NoSegundo="3">
+         <LineaEnsamblaje NoLinea="1">C3 Ensamblando</LineaEnsamblaje>
+         <LineaEnsamblaje NoLinea="2">C1 Ensamblando</LineaEnsamblaje>
+      </Tiempo>
+      <Tiempo NoSegundo="4">
+         <LineaEnsamblaje NoLinea="1">C3 Ensamblando</LineaEnsamblaje>
+         <LineaEnsamblaje NoLinea="2">C1 Ensamblando</LineaEnsamblaje>
+      </Tiempo>
+      <Tiempo NoSegundo="5">
+         <LineaEnsamblaje NoLinea="1">C3 Ensamblando</LineaEnsamblaje>
+         <LineaEnsamblaje NoLinea="2">C1 Ensamblando</LineaEnsamblaje>
+      </Tiempo>
+      <Tiempo NoSegundo="6">
+         <LineaEnsamblaje NoLinea="1">C3 Ensamblando</LineaEnsamblaje>
+         <LineaEnsamblaje NoLinea="2">C1 Ensamblando</LineaEnsamblaje>
+      </Tiempo>
+      <Tiempo NoSegundo="7">
+         <LineaEnsamblaje NoLinea="1">C3 Ensamblando</LineaEnsamblaje>
+         <LineaEnsamblaje NoLinea="2">C1 Ensamblando</LineaEnsamblaje>
+      </Tiempo>
+      <Tiempo NoSegundo="8">
+         <LineaEnsamblaje NoLinea="1">C3 Ensamblando</LineaEnsamblaje>
+         <LineaEnsamblaje NoLinea="2">C1 Ensamblando</LineaEnsamblaje>
+      </Tiempo>
+      <Tiempo NoSegundo="9">
+         <LineaEnsamblaje NoLinea="1">C3 Ensamblando</LineaEnsamblaje>
+         <LineaEnsamblaje NoLinea="2">C1 Ensamblando</LineaEnsamblaje>
+      </Tiempo>
+      <Tiempo NoSegundo="10">
+         <LineaEnsamblaje NoLinea="1">C2 Moviendo</LineaEnsamblaje>
+         <LineaEnsamblaje NoLinea="2">C2 Moviendo</LineaEnsamblaje>
+      </Tiempo>
+      <Tiempo NoSegundo="11">
+         <LineaEnsamblaje NoLinea="1">C1 Lista</LineaEnsamblaje>
+         <LineaEnsamblaje NoLinea="2">C3 Lista</LineaEnsamblaje>
+      </Tiempo>
+      <Tiempo NoSegundo="12">
+         <LineaEnsamblaje NoLinea="1">C1 Ensamblando</LineaEnsamblaje>
+         <LineaEnsamblaje NoLinea="2">C3 Lista</LineaEnsamblaje>
+      </Tiempo>
+      <Tiempo NoSegundo="13">
+         <LineaEnsamblaje NoLinea="1">C1 Ensamblando</LineaEnsamblaje>
+         <LineaEnsamblaje NoLinea="2">C3 Lista</LineaEnsamblaje>
+      </Tiempo>
+      <Tiempo NoSegundo="14">
+         <LineaEnsamblaje NoLinea="1">C1 Ensamblando</LineaEnsamblaje>
+         <LineaEnsamblaje NoLinea="2">C3 Lista</LineaEnsamblaje>
+      </Tiempo>
+      <Tiempo NoSegundo="15">
+         <LineaEnsamblaje NoLinea="1">C1 Ensamblando</LineaEnsamblaje>
+         <LineaEnsamblaje NoLinea="2">C3 Lista</LineaEnsamblaje>
+      </Tiempo>
+      <Tiempo NoSegundo="16">
+         <LineaEnsamblaje NoLinea="1">C1 Fin</LineaEnsamblaje>
+         <LineaEnsamblaje NoLinea="2">C3 Lista</LineaEnsamblaje>
+      </Tiempo>
+      <Tiempo NoSegundo="17">
+         <LineaEnsamblaje NoLinea="1">C1 Fin</LineaEnsamblaje>
+         <LineaEnsamblaje NoLinea="2">C3 Ensamblando</LineaEnsamblaje>
+      </Tiempo>
+      <Tiempo NoSegundo="18">
+         <LineaEnsamblaje NoLinea="1">C1 Fin</LineaEnsamblaje>
+         <LineaEnsamblaje NoLinea="2">C3 Ensamblando</LineaEnsamblaje>
+      </Tiempo>
+      <Tiempo NoSegundo="19">
+         <LineaEnsamblaje NoLinea="1">C1 Fin</LineaEnsamblaje>
+         <LineaEnsamblaje NoLinea="2">C3 Ensamblando</LineaEnsamblaje>
+      </Tiempo>
+      <Tiempo NoSegundo="20">
+         <LineaEnsamblaje NoLinea="1">C1 Fin</LineaEnsamblaje>
+         <LineaEnsamblaje NoLinea="2">C3 Ensamblando</LineaEnsamblaje>
+      </Tiempo>
+      <Tiempo NoSegundo="21">
+         <LineaEnsamblaje NoLinea="1">C1 Fin</LineaEnsamblaje>
+         <LineaEnsamblaje NoLinea="2">C3 Ensamblando</LineaEnsamblaje>
+      </Tiempo>
+      <Tiempo NoSegundo="22">
+         <LineaEnsamblaje NoLinea="1">C1 Fin</LineaEnsamblaje>
+         <LineaEnsamblaje NoLinea="2">C3 Ensamblando</LineaEnsamblaje>
+      </Tiempo>
+      <Tiempo NoSegundo="23">
+         <LineaEnsamblaje NoLinea="1">C1 Fin</LineaEnsamblaje>
+         <LineaEnsamblaje NoLinea="2">C3 Ensamblando</LineaEnsamblaje>
+      </Tiempo>
+      <Tiempo NoSegundo="24">
+         <LineaEnsamblaje NoLinea="1">C1 Fin</LineaEnsamblaje>
+         <LineaEnsamblaje NoLinea="2">C2 Lista</LineaEnsamblaje>
+      </Tiempo>
+      <Tiempo NoSegundo="25">
+         <LineaEnsamblaje NoLinea="1">C1 Fin</LineaEnsamblaje>
+         <LineaEnsamblaje NoLinea="2">C2 Ensamblando</LineaEnsamblaje>
+      </Tiempo>
+      <Tiempo NoSegundo="26">
+         <LineaEnsamblaje NoLinea="1">C1 Fin</LineaEnsamblaje>
+         <LineaEnsamblaje NoLinea="2">C2 Ensamblando</LineaEnsamblaje>
+      </Tiempo>
+      <Tiempo NoSegundo="27">
+         <LineaEnsamblaje NoLinea="1">C1 Fin</LineaEnsamblaje>
+         <LineaEnsamblaje NoLinea="2">C2 Ensamblando</LineaEnsamblaje>
+      </Tiempo>
+      <Tiempo NoSegundo="28">
+         <LineaEnsamblaje NoLinea="1">C1 Fin</LineaEnsamblaje>
+         <LineaEnsamblaje NoLinea="2">C2 Ensamblando</LineaEnsamblaje>
+      </Tiempo>
+      <Tiempo NoSegundo="29">
+         <LineaEnsamblaje NoLinea="1">C1 Fin</LineaEnsamblaje>
+         <LineaEnsamblaje NoLinea="2">C2 Ensamblando</LineaEnsamblaje>
+      </Tiempo>
+      <Tiempo NoSegundo="30">
+         <LineaEnsamblaje NoLinea="1">C1 Fin</LineaEnsamblaje>
+         <LineaEnsamblaje NoLinea="2">C2 Ensamblando</LineaEnsamblaje>
+      </Tiempo>
+      <Tiempo NoSegundo="31">
+         <LineaEnsamblaje NoLinea="1">C1 Fin</LineaEnsamblaje>
+         <LineaEnsamblaje NoLinea="2">C2 Ensamblando</LineaEnsamblaje>
+      </Tiempo>
    </ElaboracionOptima>
 </Producto>
