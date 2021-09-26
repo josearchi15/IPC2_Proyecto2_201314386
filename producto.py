@@ -202,6 +202,8 @@ class Producto:
         root = Tk()
         root.title(self.nombre)
         root.geometry("500x500")
+        root.configure(background="#333333")
+
 
         root.columnconfigure(0, weight=1)
         root.columnconfigure(1, weight=1)
@@ -251,7 +253,14 @@ class Producto:
             myTree.insert(parent='', index="end", values=lineaTup)
             print(lineaTup)
 
-        myTree.grid(row=0, column=0, sticky='nsew', columnspan=4)
+        nombre = Label(root, text=self.nombre, pady=20)
+        nombre.grid(row=0, column=0)
+        strTiempo = str(self.tiempo)+" segundos en ensamblar"
+        tiempo = Label(root, text=strTiempo, pady=20)
+        tiempo.grid(row=0, column=1, columnspan=3)
+        myTree.grid(row=1, column=0, sticky='nsew', columnspan=4)
+        salir = Button(root, text="Salir", command=root.quit)
+        salir.grid(row=3, column=1, columnspan=2)
         # myTree.pack(pady=20)
         root.mainloop()
 

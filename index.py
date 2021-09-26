@@ -1,6 +1,6 @@
 from tkinter import *
 from tkinter import filedialog
-from main import constuirMaquina, construirSimulacion, listadoSimulacion, printPasos
+from main import constuirMaquina, construirSimulacion, listadoSimulacion, madeProducto, printPasos
 
 root = Tk()
 root.title("Proyecto 2: Brazos de ensamblaje")
@@ -26,7 +26,10 @@ def listado():
     actual = listadoSimulacion.cabeza
     while actual != None:
         print(actual.obtenerDato())
-        Label(root, text=actual.obtenerDato()).pack()
+        nombreProducto = actual.obtenerDato()
+        # Label(root, text=actual.obtenerDato()).pack()
+        producto = Button(root, text=nombreProducto, command=lambda: madeProducto(nombreProducto))
+        producto.pack()
         actual = actual.obtenerSiguiente()
 
 
