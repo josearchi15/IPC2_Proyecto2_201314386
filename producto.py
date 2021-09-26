@@ -2,6 +2,8 @@ from cola import Cola
 from maquina import Maquina
 from tkinter import *
 from tkinter import ttk
+import graphviz
+from PIL import ImageTk, Image
 
 
 class Producto:
@@ -77,6 +79,33 @@ class Producto:
         self.lineasProduccion = lineasProducto2
         print(self.nombre+" usa "+str(lineasProducto2.tamano())+" lineas. \n")
         # return lineasProducto2
+
+    def pasosGrafica(self):
+        graficaPasos = Cola()
+        self.getPasos()
+        graficaPasos = self.pasos
+        pasosGrafica = Cola()
+        # grafica = Graph()
+        # grafica.attr('graph', label=self.nombre)
+        dot = graphviz.Digraph()
+        dot.attr(label=self.nombre)
+        # dot.attr(rank='LR')
+        dot.graph_attr['rankdir'] = 'LR'
+
+        while not graficaPasos.estaVacia():
+            paso = graficaPasos.pop()
+            pasoCompleto = "L"+paso['linea']+"C"+paso['componente']
+            # print(pasoCompleto)
+            pasosGrafica.agregar(pasoCompleto)
+        print("\n----Generando grafica")
+
+        primero = pasosGrafica.pop()
+        while not pasosGrafica.estaVacia():
+            # print(pasosGrafica.pop())
+            actual = pasosGrafica.pop()
+            dot.edge(primero, actual)
+            primero = actual
+        dot.render("images/"+self.nombre, format="png", view=True)
 
 
     def construir(self):
@@ -199,6 +228,8 @@ class Producto:
             
 
     def showTable(self):
+        self.pasosGrafica()
+
         root = Tk()
         root.title(self.nombre)
         root.geometry("500x500")
@@ -259,9 +290,13 @@ class Producto:
         tiempo = Label(root, text=strTiempo, pady=20)
         tiempo.grid(row=0, column=1, columnspan=3)
         myTree.grid(row=1, column=0, sticky='nsew', columnspan=4)
+
+        # img = ImageTk.PhotoImage(Image.open('images/'+self.nombre+'.png'))
+        # l = Label(root, image=img)
+        # l.grid(row=2, column=0, columnspan=4)
+
         salir = Button(root, text="Salir", command=root.quit)
         salir.grid(row=3, column=1, columnspan=2)
-        # myTree.pack(pady=20)
         root.mainloop()
 
 
