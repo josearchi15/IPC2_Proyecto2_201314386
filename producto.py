@@ -4,6 +4,8 @@ from tkinter import *
 from tkinter import ttk
 import graphviz
 from PIL import ImageTk, Image
+import xml.etree.ElementTree as ET
+from xml.dom import minidom
 
 
 class Producto:
@@ -106,6 +108,24 @@ class Producto:
             dot.edge(primero, actual)
             primero = actual
         dot.render("images/"+self.nombre, format="png", view=True)
+
+
+    def generarXML(self):
+        xml = ET.Element('Producto', nombre=self.nombre)
+        nombre = ET.SubElement(xml, 'Nombre')
+        nombre.text = self.nombre
+        tiempo = ET.SubElement(xml, 'TiempoTotal')
+        tiempo.text = str(self.tiempo)
+        elaOptima = ET.SubElement(xml, 'ElaboracionOptima')
+
+        for seg in range(1, self.tiempo+1, 1):
+            segundo = ET.SubElement(elaOptima, 'Tiempo', attrib={'NoSegundo':str(seg)})
+
+        xmlstr = minidom.parseString(ET.tostring(xml, encoding='unicode')).toprettyxml(indent="   ")
+        with open("xmls/"+str(self.nombre)+".xml", "w") as f:
+            f.write(xmlstr)
+
+        print("El archivo fue guardado..!!")
 
 
     def construir(self):
@@ -299,7 +319,7 @@ class Producto:
         salir.grid(row=3, column=1, columnspan=2)
         root.mainloop()
 
-
+        self.generarXML()
 
 
 

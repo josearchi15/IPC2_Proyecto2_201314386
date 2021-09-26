@@ -1,0 +1,38 @@
+<?xml version="1.0" ?>
+<Producto nombre="SuperComputadora">
+   <Nombre>SuperComputadora</Nombre>
+   <TiempoTotal>31</TiempoTotal>
+   <ElaboracionOptima>
+      <Tiempo NoSegundo="1"/>
+      <Tiempo NoSegundo="2"/>
+      <Tiempo NoSegundo="3"/>
+      <Tiempo NoSegundo="4"/>
+      <Tiempo NoSegundo="5"/>
+      <Tiempo NoSegundo="6"/>
+      <Tiempo NoSegundo="7"/>
+      <Tiempo NoSegundo="8"/>
+      <Tiempo NoSegundo="9"/>
+      <Tiempo NoSegundo="10"/>
+      <Tiempo NoSegundo="11"/>
+      <Tiempo NoSegundo="12"/>
+      <Tiempo NoSegundo="13"/>
+      <Tiempo NoSegundo="14"/>
+      <Tiempo NoSegundo="15"/>
+      <Tiempo NoSegundo="16"/>
+      <Tiempo NoSegundo="17"/>
+      <Tiempo NoSegundo="18"/>
+      <Tiempo NoSegundo="19"/>
+      <Tiempo NoSegundo="20"/>
+      <Tiempo NoSegundo="21"/>
+      <Tiempo NoSegundo="22"/>
+      <Tiempo NoSegundo="23"/>
+      <Tiempo NoSegundo="24"/>
+      <Tiempo NoSegundo="25"/>
+      <Tiempo NoSegundo="26"/>
+      <Tiempo NoSegundo="27"/>
+      <Tiempo NoSegundo="28"/>
+      <Tiempo NoSegundo="29"/>
+      <Tiempo NoSegundo="30"/>
+      <Tiempo NoSegundo="31"/>
+   </ElaboracionOptima>
+</Producto>
